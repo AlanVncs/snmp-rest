@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/AlanVncs/snmp-rest/issues"
   },
-  "homepage": "https://github.com/AlanVncs/snmp-rest#readme"
+  "homepage": "https://github.com/AlanVncs/snmp-rest#readme",
+  "dependencies": {
+    "dotenv": "^8.1.0"
+  }
 }
