@@ -1,0 +1,11 @@
+version: '2'
+services:
+  node:
+    container_name: "node-container"
+    restart: always
+    build: .
+    image: node-image
+    volumes: 
+        - ./src:/snmp-rest/src
+    ports:
+        - "5000:80"
