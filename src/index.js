@@ -9,7 +9,7 @@ const snmp_porta2_oid = process.env.SNMP_PORTA2_OID;
 var session = new snmp.Session({ host: snmp_host, community: snmp_community});
 
 
-session.get({ oid: snmp_sysname_oid }, function (error, varbinds) {
+session.get({ oid: snmp_porta1_oid }, function (error, varbinds) {
     if (error) {
         console.log('Fail :(');
     } else {
