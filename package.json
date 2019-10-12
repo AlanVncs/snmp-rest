@@ -1,0 +1,19 @@
+{
+  "name": "snmp-rest",
+  "version": "1.0.0",
+  "description": "API REST para consultas SNMP em switchs",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlanVncs/snmp-rest.git"
+  },
+  "author": "alanvncs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlanVncs/snmp-rest/issues"
+  },
+  "homepage": "https://github.com/AlanVncs/snmp-rest#readme"
+}
