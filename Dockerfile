@@ -1,6 +1,6 @@
 FROM node:current-alpine
-RUN mkdir -p /snmp/src
-WORKDIR /snmp
+RUN mkdir -p /snmp-rest/src
+WORKDIR /snmp-rest
 VOLUME ./src
 COPY ./package.json ./
 RUN npm install -y
