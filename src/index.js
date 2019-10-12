@@ -6,6 +6,10 @@ app.get('/', (req, res) => {
     res.send('Hello F');
 });
 
+app.get('/nome', (req, res) => {
+    res.send('Nome do Switch');
+});
+
 app.listen(5000);
 
 
