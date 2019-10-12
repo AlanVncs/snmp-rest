@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/AlanVncs/snmp-rest#readme",
   "dependencies": {
-    "dotenv": "^8.1.0"
+    "dotenv": "^8.1.0",
+    "snmp-native": "^1.2.0"
   }
 }
