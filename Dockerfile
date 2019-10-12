@@ -6,5 +6,5 @@ COPY ./package.json ./
 COPY ./package-lock.json ./
 COPY ./.env ./
 RUN npm install -y
-EXPOSE 80
+EXPOSE 5000
 ENTRYPOINT ["npm", "start"]
