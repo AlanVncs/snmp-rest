@@ -11,9 +11,11 @@ var snmpSession = new snmp.Session({'host': snmp_host, 'community': snmp_communi
 
 var snmpController = {
     getPorta : (portaID, res) => {
-        if(snmp_portas_oid[portaID]) {
-            snmpSession.get({'oid': snmp_portas_oid[portaID] }, function (error, varbinds) {
-                if (error) {} else {
+        if(snmp_portas_oid[portaID-1]) {
+            snmpSession.get({'oid': snmp_portas_oid[portaID-1] }, function (error, varbinds) {
+                if (error) {
+                    res.json({'text': 'Erro ao acessar o switch'});
+                } else {
                     res.json({'value' : varbinds[0].value});
                 }
             });
