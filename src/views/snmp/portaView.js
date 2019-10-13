@@ -4,7 +4,7 @@ const states = {'1' : 'up', '2' : 'down', '3' : 'testing', '4' : 'unknown', '5' 
 module.exports = (error, snmpHost, snmpCommunity, snmpOid, stateCode) => {
 
     var response =  {
-        'status': status.FAIL,
+        'status': null,
         'snmp_host': snmpHost,
         'snmp_community': snmpCommunity,
         'snmp_oid': snmpOid,
@@ -12,9 +12,11 @@ module.exports = (error, snmpHost, snmpCommunity, snmpOid, stateCode) => {
     };
     
     if(error){
+        response.status = status.FAIL;
         response.error = error.message;
     }
     else {
+        response.status = status.SUCCESS;
         response.data = {
             'state_code': stateCode,
             'state_text': states[stateCode]
