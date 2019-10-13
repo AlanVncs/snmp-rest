@@ -12,7 +12,7 @@ module.exports = (error, host, community, oid, stateCode) => {
             'host': host,
             'community': community,
             'oid': oid,
-            'date': Date.now(),
+            'timeStamp': Date.now(),
             'error': error.message
         }
     }
@@ -24,7 +24,7 @@ module.exports = (error, host, community, oid, stateCode) => {
             'host': host,
             'community': community,
             'oid': oid,
-            'date': Date.now(),
+            'timeStamp': Date.now(),
             'data': {
                 'stateCode': stateCode,
                 'stateText': states[stateCode]
