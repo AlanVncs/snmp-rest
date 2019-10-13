@@ -10,7 +10,7 @@ var snmpSession = new snmp.Session({'host': snmp_host, 'community': snmp_communi
 
 
 var snmpController = {
-    getPorta : (portaID, viewCallback) => {
+    getPorta : (portaID, res) => {
         if(snmp_portas_oid[portaID]) {
             snmpSession.get({'oid': snmp_portas_oid[portaID] }, function (error, varbinds) {
                 if (error) {} else {
