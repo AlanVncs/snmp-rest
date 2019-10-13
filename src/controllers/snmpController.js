@@ -16,7 +16,7 @@ var snmpController = {
         const oid = snmp_portas_oid[portaID-1];
         if(oid) {
             snmpSession.get({'oid': oid}, function (error, varbinds) {
-                const stateCode = varbinds?varbinds[0]:null;
+                const stateCode = varbinds?varbinds[0].value:null;
                 res.json(portaView(error, snmp_host, snmp_community, oid, stateCode));
             });
         }
