@@ -13,4 +13,8 @@ router.get('/nome', (req, res, next) => {
     snmpController.getNome(res);
 });
 
+router.get('/', (req, res, next) => {
+    snmpController.getAll(res);
+});
+
 module.exports = router;

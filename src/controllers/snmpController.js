@@ -9,10 +9,11 @@ const snmpSession = new snmp.Session({'host': snmpHost, 'community': snmpCommuni
 
 const portaView = require('../views/snmp/portaView');
 const nomeView = require('../views/snmp/nomeView');
+const indexView = require('../views/snmp/indexView');
 
 var snmpController = {
 
-    // Obtem o estado da porta 
+    // Obtém o estado da porta 
     getPorta : (portaID, res) => {
         const oid = snmpPortasOid[portaID-1];
         if(oid) {
@@ -27,11 +28,24 @@ var snmpController = {
         }
     },
 
-    // Obem o nome do switch
+    // Obtém o nome do switch
     getNome : (res) => {
         snmpSession.get({'oid': snmpSysnameOid}, function (error, varbinds) {
             const nome = varbinds?varbinds[0].value:null;
             res.json(nomeView(error, snmpHost, snmpCommunity, snmpSysnameOid, nome));
+        });
+    },
+
+    // Obtém todos os dados
+    getAll : (res) => {
+        oids = [snmpSysnameOid, snmpPortasOid[0], snmpPortasOid[1]];
+        snmpSession.getAll({'oids': oids, 'abortOnError' : true}, function (error, varbinds) {
+            
+            const nome = varbinds?varbinds[0].value:null;
+            const stateCode1 = varbinds?varbinds[1].value:null;
+            const stateCode2 = varbinds?varbinds[2].value:null;
+
+            res.json(indexView(error, snmpHost, snmpCommunity, snmpSysnameOid, nome, stateCode1, stateCode2));
         });
     }
 };
