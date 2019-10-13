@@ -21,12 +21,12 @@ module.exports = (error, snmpHost, snmpCommunity, snmpOids, nome, stateCodePorta
             'nome': nome,
             'portas': [
                 {
-                    'porta': '1',
+                    'porta': '01',
                     'state_code': stateCodePorta1,
                     'state_text': states[stateCodePorta1]
                 },
                 {
-                    'porta': '2',
+                    'porta': '02',
                     'state_code': stateCodePorta2,
                     'state_text': states[stateCodePorta2]
                 }
