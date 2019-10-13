@@ -5,25 +5,28 @@ const snmp_community = process.env.SNMP_COMMUNITY;
 const snmp_sysname_oid = process.env.SNMP_SYSNAME_OID;
 const snmp_portas_oid = [process.env.SNMP_PORTA1_OID, process.env.SNMP_PORTA2_OID];
 
-var snmpSession = new snmp.Session({'host': snmp_host, 'community': snmp_community});
+const snmpSession = new snmp.Session({'host': snmp_host, 'community': snmp_community});
 
-
+const portaView = require('../views/snmp/portaView');
 
 var snmpController = {
+
+    // Obtem o estado da porta 
     getPorta : (portaID, res) => {
-        if(snmp_portas_oid[portaID-1]) {
-            snmpSession.get({'oid': snmp_portas_oid[portaID-1]}, function (error, varbinds) {
-                if (error) {
-                    res.json({'text': 'Erro ao acessar o switch'});
-                } else {
-                    res.json({'value' : varbinds[0].value});
-                }
+        const oid = snmp_portas_oid[portaID-1];
+        if(oid) {
+            snmpSession.get({'oid': oid}, function (error, varbinds) {
+                const stateCode = varbinds?varbinds[0]:null;
+                res.json(portaView(error, snmp_host, snmp_community, oid, stateCode));
             });
         }
         else {
-            res.json({'text': 'Esta porta não pode ser consultada'});
+            error = {'message': 'Esta porta não pode ser acessada'};
+            res.json(portaView(error, snmp_host, snmp_community, 'null', 4)); // 4 - unknown
         }
     },
+
+    // Obem o nome do switch
     getNome : (res) => {
         snmpSession.get({'oid': snmp_sysname_oid}, function (error, varbinds) {
             if (error) {
