@@ -19,12 +19,12 @@ var snmpController = {
         if(oid) {
             snmpSession.get({'oid': oid}, function (error, varbinds) {
                 const stateCode = varbinds?varbinds[0].value:null;
-                res.json(portaView(error, snmpHost, snmpCommunity, oid, stateCode));
+                res.json(portaView(error, snmpHost, snmpCommunity, oid, stateCode, portaID));
             });
         }
         else {
             error = {'message': 'Esta porta não pode ser acessada'};
-            res.json(portaView(error, snmpHost, snmpCommunity, null, null));
+            res.json(portaView(error, snmpHost, snmpCommunity, null, null, null));
         }
     },
 
