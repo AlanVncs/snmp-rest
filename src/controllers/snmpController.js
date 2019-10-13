@@ -8,6 +8,7 @@ const snmp_portas_oid = [process.env.SNMP_PORTA1_OID, process.env.SNMP_PORTA2_OI
 const snmpSession = new snmp.Session({'host': snmp_host, 'community': snmp_community});
 
 const portaView = require('../views/snmp/portaView');
+const nomeView = require('../views/snmp/nomeView');
 
 var snmpController = {
 
@@ -29,11 +30,8 @@ var snmpController = {
     // Obem o nome do switch
     getNome : (res) => {
         snmpSession.get({'oid': snmp_sysname_oid}, function (error, varbinds) {
-            if (error) {
-                res.json({'text': 'Erro ao acessar o switch'});
-            } else {
-                res.json({'nome' : varbinds[0].value});
-            }
+            const nome = varbinds?varbinds[0].value:null;
+            res.json(nomeView(error, snmp_host, snmp_community, oid, nome));
         });
     }
 };
