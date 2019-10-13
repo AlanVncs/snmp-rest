@@ -1,4 +1,4 @@
-var snmp = require('snmp-native');
+const snmp = require('snmp-native');
 
 const snmp_host = process.env.SNMP_HOST;
 const snmp_community = process.env.SNMP_COMMUNITY;
@@ -12,7 +12,7 @@ var snmpSession = new snmp.Session({'host': snmp_host, 'community': snmp_communi
 var snmpController = {
     getPorta : (portaID, res) => {
         if(snmp_portas_oid[portaID-1]) {
-            snmpSession.get({'oid': snmp_portas_oid[portaID-1] }, function (error, varbinds) {
+            snmpSession.get({'oid': snmp_portas_oid[portaID-1]}, function (error, varbinds) {
                 if (error) {
                     res.json({'text': 'Erro ao acessar o switch'});
                 } else {
@@ -23,6 +23,15 @@ var snmpController = {
         else {
             res.json({'text': 'Esta porta não pode ser consultada'});
         }
+    },
+    getNome : (res) => {
+        snmpSession.get({'oid': snmp_sysname_oid}, function (error, varbinds) {
+            if (error) {
+                res.json({'text': 'Erro ao acessar o switch'});
+            } else {
+                res.json({'nome' : varbinds[0].value});
+            }
+        });
     }
 };
 
