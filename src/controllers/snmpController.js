@@ -14,12 +14,12 @@ var snmpController = {
         if(snmp_portas_oid[portaID]) {
             snmpSession.get({'oid': snmp_portas_oid[portaID] }, function (error, varbinds) {
                 if (error) {} else {
-                    viewCallback({'value' : varbinds[0].value});
+                    res.json({'value' : varbinds[0].value});
                 }
             });
         }
         else {
-            viewCallback({'text': 'Esta porta não pode ser consultada'});
+            res.json({'text': 'Esta porta não pode ser consultada'});
         }
     }
 };
