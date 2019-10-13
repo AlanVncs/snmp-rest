@@ -1,28 +1,10 @@
-var snmpController = require('./controllers/snmpController');
+const app = require('express')();
+const snmpRouter = require('./routes/snmpRouter');
+const port = process.env.PORT || 5000;
 
+app.use(snmpRouter);
 
-
-
-
-const express = require('express');
-
-const app = express();
-
-app.get('/', snmpController.getIndex);
-
-// app.get('/nome', (req, res) => {
-//     res.send('Nome do Switch');
-// });
-
-// app.get('/nome', (req, res) => {
-//     res.send('Nome do Switch');
-// });
-
-// app.get('/nome', (req, res) => {
-//     res.send('Nome do Switch');
-// });
-
-app.listen(5000);
+app.listen(port);
 
 
 
