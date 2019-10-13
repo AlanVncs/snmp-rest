@@ -31,7 +31,7 @@ var snmpController = {
     getNome : (res) => {
         snmpSession.get({'oid': snmp_sysname_oid}, function (error, varbinds) {
             const nome = varbinds?varbinds[0].value:null;
-            res.json(nomeView(error, snmp_host, snmp_community, oid, nome));
+            res.json(nomeView(error, snmp_host, snmp_community, snmp_sysname_oid, nome));
         });
     }
 };
