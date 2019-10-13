@@ -40,12 +40,12 @@ var snmpController = {
     getAll : (res) => {
         oids = [snmpSysnameOid, snmpPortasOid[0], snmpPortasOid[1]];
         snmpSession.getAll({'oids': oids, 'abortOnError' : true}, function (error, varbinds) {
-            
+
             const nome = varbinds?varbinds[0].value:null;
             const stateCode1 = varbinds?varbinds[1].value:null;
             const stateCode2 = varbinds?varbinds[2].value:null;
 
-            res.json(indexView(error, snmpHost, snmpCommunity, snmpSysnameOid, nome, stateCode1, stateCode2));
+            res.json(indexView(error, snmpHost, snmpCommunity, oids, nome, stateCode1, stateCode2));
         });
     }
 };
