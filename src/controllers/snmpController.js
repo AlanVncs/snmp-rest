@@ -23,7 +23,7 @@ var snmpController = {
         }
         else {
             error = {'message': 'Esta porta não pode ser acessada'};
-            res.json(portaView(error, snmpHost, snmpCommunity, 'null', 'null'));
+            res.json(portaView(error, snmpHost, snmpCommunity, null, null));
         }
     },
 
