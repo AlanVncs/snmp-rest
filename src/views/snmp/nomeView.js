@@ -1,30 +1,21 @@
 const status = {'SUCCESS': 'success', 'FAIL': 'fail'};
 
-module.exports = (error, host, community, oid, nome) => {
+module.exports = (error, snmpHost, snmpCommunity, snmpOid, nome) => {
+
+    var response = {
+        'status': status.FAIL,
+        'snmp_host': snmpHost,
+        'snmp_community': snmpCommunity,
+        'snmp_oid': snmpOid,
+        'timestamp': Date.now()
+    }
     
-    // Fail
     if(error){
-        return {
-            'status': status.FAIL,
-            'host': host,
-            'community': community,
-            'oid': oid,
-            'timeStamp': Date.now(),
-            'error': error.message
-        }
+        response.error = error.message;
+    }
+    else {
+        response.data = {'nome': nome};
     }
 
-    // Success
-    else {
-        return {
-            'status': status.SUCCESS,
-            'host': host,
-            'community': community,
-            'oid': oid,
-            'timeStamp': Date.now(),
-            'data': {
-                'nome': nome
-            }
-        }
-    }
+    return response;
 }
