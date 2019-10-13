@@ -8,8 +8,7 @@ module.exports = (error, snmpHost, snmpCommunity, snmpOid, stateCode) => {
         'snmp_host': snmpHost,
         'snmp_community': snmpCommunity,
         'snmp_oid': snmpOid,
-        'timestamp': Date.now(),
-        'error': error.message
+        'timestamp': Date.now()
     };
     
     if(error){
