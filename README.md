@@ -31,7 +31,7 @@ cd snmp-rest
 cp .env.example .env 
 # Preencha o arquivo .env com os valores necessários
 npm install
-npm start
+npm start # Troque por npm run dev para rodar no modo dev
 ```
 
 
