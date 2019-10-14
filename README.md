@@ -28,8 +28,8 @@ http://<ip-do-servidor>:5000/
 ```
 git clone https://github.com/AlanVncs/snmp-rest
 cd snmp-rest
-cp .env.example .env 
-# Preencha o arquivo .env com os valores necessários
+cp 'src/.env.example' 'src/.env'
+# Preencha o arquivo 'src/.env' com os valores necessários
 npm install
 npm start # Troque por 'npm run dev' para rodar no modo dev
 ```
@@ -39,7 +39,7 @@ npm start # Troque por 'npm run dev' para rodar no modo dev
 ```
 git clone https://github.com/AlanVncs/snmp-rest
 cd snmp-rest
-cp .env.example .env 
-# Preencha o arquivo .env com os valores necessários
+cp 'src/.env.example' 'src/.env'
+# Preencha o arquivo 'src/.env' com os valores necessários
 docker-compose up
 ```

@@ -4,8 +4,8 @@
   "description": "API REST para consultas SNMP em switchs",
   "main": "src/index.js",
   "scripts": {
-    "start": "node -r dotenv/config src/index.js",
-    "dev": "nodemon -r dotenv/config src/index.js"
+    "start": "node -r dotenv/config src/index.js dotenv_config_path=src/.env",
+    "dev": "nodemon -r dotenv/config src/index.js dotenv_config_path=src/.env"
   },
   "repository": {
     "type": "git",
