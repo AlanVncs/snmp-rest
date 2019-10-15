@@ -1,0 +1,8 @@
+# Este arquivo permite commit de uma pasta "vazia"
+
+# Trick :D
+# Ignore all files
+*
+
+# Except this one
+!.gitignore
