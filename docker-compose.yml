@@ -25,7 +25,7 @@ services:
         restart: 'always'
         image: 'mongo-express'
         ports:
-            - 8081:8081
+            - 5001:8081
         links:
             - 'mongodb:mongo'
         env_file:
