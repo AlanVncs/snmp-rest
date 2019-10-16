@@ -1,11 +1,32 @@
 version: '2'
 services:
-  node:
-    container_name: "node-container"
-    restart: always
-    build: .
-    image: node-image
-    volumes: 
-        - ./src:/snmp-rest/src
-    ports:
-        - "5000:5000"
+
+    node:
+        container_name: "node-container"
+        restart: always
+        build: .
+        image: 'node-image'
+        volumes: 
+            - ./src:/snmp-rest/src
+        ports:
+            - "5000:5000"
+        links:
+            - 'mongodb:mongo-container-ip'
+
+    mongodb:
+        container_name: 'mongodb-container'
+        restart: always
+        image: 'mongo:latest'
+        volumes:
+            - './data/db:/data/db'
+    
+    mongo-express:
+        container_name: 'mongo-express-container'
+        restart: 'always'
+        image: 'mongo-express'
+        ports:
+            - 5001:8081
+        links:
+            - 'mongodb:mongo'
+        env_file:
+            - mongo-express-container.env
