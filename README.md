@@ -27,6 +27,7 @@ Gerenciar o banco de dados
 ```
 http://<ip-do-servidor>:5001/
 ```
+Login e senha podem ser definidos no arquivo ```mongo-express-container.env```. Para desativar a autenticação, deixe-os comentados.
 
 
 ## Como rodar
