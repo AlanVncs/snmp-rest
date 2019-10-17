@@ -8,7 +8,8 @@ module.exports = (error, snmpHost, snmpCommunity, req, snmpOids) => {
         'snmp_oids': snmpOids,
         'access': {
             'from': req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-            'route': req.url
+            'route': req.url,
+            'method': req.method
         },
         'timestamp': Date.now(),
         'error': error?error.message:null
