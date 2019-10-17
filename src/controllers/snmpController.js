@@ -21,14 +21,14 @@ var snmpController = {
         if(oid) {
             snmpSession.get({'oid': oid}, function (error, varbinds) {
                 const stateCode = varbinds?varbinds[0].value:null;
-                const response = PortaView(error, snmpHost, snmpCommunity, req.url, oid, stateCode, portaID);
+                const response = PortaView(error, snmpHost, snmpCommunity, req, oid, stateCode, portaID);
                 dbDriver.insert(response);
                 res.json(response);
             });
         }
         else {
             error = {'message': 'Esta porta não pode ser acessada'};
-            const portaJson = PortaView(error, snmpHost, snmpCommunity, req.url);
+            const portaJson = PortaView(error, snmpHost, snmpCommunity, req);
             dbDriver.insert(portaJson);
             res.json(portaJson);
         }
@@ -37,7 +37,7 @@ var snmpController = {
     getNome : (req, res) => {
         snmpSession.get({'oid': snmpSysnameOid}, function (error, varbinds) {
             const nome = varbinds?varbinds[0].value:null;
-            const response = NomeView(error, snmpHost, snmpCommunity, req.url, snmpSysnameOid, nome);
+            const response = NomeView(error, snmpHost, snmpCommunity, req, snmpSysnameOid, nome);
             dbDriver.insert(response);
             res.json(response);
         });
@@ -49,7 +49,7 @@ var snmpController = {
             const nome = varbinds?varbinds[0].value:null;
             const stateCode1 = varbinds?varbinds[1].value:null;
             const stateCode2 = varbinds?varbinds[2].value:null;
-            const response = IndexView(error, snmpHost, snmpCommunity, req.url, oids, nome, stateCode1, stateCode2);
+            const response = IndexView(error, snmpHost, snmpCommunity, req, oids, nome, stateCode1, stateCode2);
             dbDriver.insert(response);
             res.json(response);
         });
