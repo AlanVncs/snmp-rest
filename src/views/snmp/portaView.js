@@ -1,22 +1,12 @@
-const status = {'SUCCESS': 'success', 'FAIL': 'fail'};
+const baseView = require('./baseView');
+
 const states = {'1' : 'up', '2' : 'down', '3' : 'testing', '4' : 'unknown', '5' : 'dormant', '6' : 'notPresent', '7' : 'lowerLayerDown'};
 
-module.exports = (error, snmpHost, snmpCommunity, snmpOid, stateCode, porta) => {
+module.exports = (error, snmpHost, snmpCommunity, req, snmpOid, stateCode, porta) => {
 
-    var response =  {
-        'status': null,
-        'snmp_host': snmpHost,
-        'snmp_community': snmpCommunity,
-        'snmp_oid': snmpOid,
-        'timestamp': Date.now()
-    };
+    var response = baseView(error, snmpHost, snmpCommunity, req, snmpOid?[snmpOid]:[]);
     
-    if(error){
-        response.status = status.FAIL;
-        response.error = error.message;
-    }
-    else {
-        response.status = status.SUCCESS;
+    if(!error){
         response.data = {
             'porta': porta,
             'state_code': stateCode,

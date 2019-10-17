@@ -1,8 +1,14 @@
+// Services
+const dbDriver = require('../services/dbService')('erros');
+
+// Views
 const error404View = require('../views/error/error404View');
 
 var errorController = {
     get404 : (req, res) => {
-        res.status(404).json(error404View(req.url));
+        const response = error404View(req);
+        dbDriver.insert(response);
+        res.status(404).json(response);
     }
 };
 

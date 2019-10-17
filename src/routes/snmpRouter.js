@@ -6,15 +6,15 @@ const portaRegex = /^\/porta([0-9][1-9]|[1-9][1-9])$/;
 
 router.get(portaRegex, (req, res, next) => {
     const portaID = req.params[0];
-    snmpController.getPorta(portaID, res);
+    snmpController.getPorta(portaID, req, res);
 });
 
 router.get('/nome', (req, res, next) => {
-    snmpController.getNome(res);
+    snmpController.getNome(req, res);
 });
 
 router.get('/', (req, res, next) => {
-    snmpController.getAll(res);
+    snmpController.getAll(req, res);
 });
 
 module.exports = router;
