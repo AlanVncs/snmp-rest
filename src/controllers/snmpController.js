@@ -34,6 +34,31 @@ var snmpController = {
         }
     },
 
+    postPorta: (portaID, stateCode, req, res) => {
+        const oid = snmpPortasOid[portaID-1];
+        if(oid) {
+            if(stateCode < 1 || stateCode > 3){
+                let error = {'message': 'Não é possível definir este valor na porta solicitada'};
+                const response = PortaView(error, snmpHost, snmpCommunity, req, oid, stateCode, portaID);
+                dbDriver.insert(response);
+                res.json(response);
+            }
+            else{
+                snmpSession.set({'oid': oid, value: stateCode, type: 2}, function (error, varbinds) {
+                    const response = PortaView(error, snmpHost, snmpCommunity, req, oid, stateCode, portaID);
+                    dbDriver.insert(response);
+                    res.json(response);
+                });
+            }
+        }
+        else{
+            const error = {'message': 'Esta porta não pode ser acessada'};
+            const portaJson = PortaView(error, snmpHost, snmpCommunity, req);
+            dbDriver.insert(portaJson);
+            res.json(portaJson);
+        }
+    },
+
     getNome : (req, res) => {
         snmpSession.get({'oid': snmpSysnameOid}, function (error, varbinds) {
             const nome = varbinds?varbinds[0].value:null;
