@@ -4,7 +4,7 @@ const states = {'1' : 'up', '2' : 'down', '3' : 'testing', '4' : 'unknown', '5' 
 
 module.exports = (error, snmpHost, snmpCommunity, req, snmpOids, nome, stateCodePorta1, stateCodePorta2) => {
 
-    var response = baseView(error, snmpHost, snmpCommunity, req, snmpOid?[snmpOid]:[]);
+    var response = baseView(error, snmpHost, snmpCommunity, req, snmpOids||[]);
     
     if(!error){
         response.data = {
