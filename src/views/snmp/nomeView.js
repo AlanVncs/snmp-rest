@@ -1,12 +1,13 @@
 const status = {'SUCCESS': 'success', 'FAIL': 'fail'};
 
-module.exports = (error, snmpHost, snmpCommunity, snmpOid, nome) => {
+module.exports = (error, snmpHost, snmpCommunity, route, snmpOid, nome) => {
 
     var response = {
         'status': null,
         'snmp_host': snmpHost,
         'snmp_community': snmpCommunity,
         'snmp_oid': snmpOid,
+        'route': route,
         'timestamp': Date.now()
     }
     
