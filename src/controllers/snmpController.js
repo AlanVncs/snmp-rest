@@ -12,7 +12,7 @@ const NomeView = require('../views/snmp/nomeView');
 const IndexView = require('../views/snmp/indexView');
 
 // Services
-const dbDriver = require('../services/dbService');
+const dbDriver = require('../services/dbService')('consultas');
 
 
 var snmpController = {

@@ -11,26 +11,31 @@ const url = 'mongodb://' + db_auth + db_host + ':' + db_port;
 
 const RED = '\x1b[31m';
 const GREEN = '\x1b[32m';
-const dbDriver = {
-    'insert': (consulta) => {
-        const mongoClient = require('mongodb').MongoClient;
-        mongoClient.connect(url, function(error, client) {
-            if(error){
-                console.error(RED + error.message);
-            }
-            else{
-                client.db('snmp-rest').collection('consultas').insertOne(consulta, (error, result) => {
-                    if(error){
-                        console.log('Inserção no banco de dados: ' + GREEN + 'FAIL');
-                    }
-                    else{
-                        console.log('Inserção no banco de dados: ' + GREEN + 'OK');
-                    }
-                });
-                client.close();
-            }
-        });
-    }
-};
 
-module.exports = dbDriver;
+
+module.exports = (collection) => {
+    const dbDriver = {
+        'insert': (consulta) => {
+            const mongoClient = require('mongodb').MongoClient;
+            mongoClient.connect(url, function(error, client) {
+                if(error){
+                    console.error(RED + error.message);
+                }
+                else{
+                    client.db('snmp-rest').collection(collection).insertOne(consulta, (error, result) => {
+                        if(error){
+                            console.log('Inserção no banco de dados: ' + GREEN + 'FAIL');
+                        }
+                        else{
+                            console.log('Inserção no banco de dados: ' + GREEN + 'OK');
+                        }
+                    });
+                    client.close();
+                }
+            });
+            return this;
+        }
+    };
+
+    return dbDriver;
+}
