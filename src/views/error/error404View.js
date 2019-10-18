@@ -6,7 +6,8 @@ module.exports = (req) => {
         'timestamp': Date.now(),
         'access': {
             'from': req.connection.remoteAddress,
-            'route': req.url
+            'route': req.url,
+            'method': req.method
         },
         'error': {
             'code': 404,
