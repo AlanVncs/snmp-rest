@@ -29,6 +29,14 @@ http://<ip-do-servidor>:5001/
 ```
 Login e senha podem ser definidos no arquivo ```mongo-express-container.env```. Para desativar a autenticação, deixe-os comentados.
 
+#### Definir valor em uma porta (POST)
+Para definir um valor em uma porta, basta realizar uma requisição do tipo POST passando o valor a ser definido:
+```
+POST
+http://<ip-do-servidor>:5001/porta<ID>/<VALOR>
+```
+Substitua <ID> pelo número da porta e <VALOR> pelo valor a ser definido (1, 2 ou 3).
+
 
 ## Como rodar
 ```
